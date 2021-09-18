@@ -11,8 +11,6 @@ import consola from "consola";
 import { json } from "body-parser";
 import morgan from "morgan";
 
-import { PORT } from "./constants";
-
 import authApi from "./routes/auth";
 import userApi from "./routes/user";
 
@@ -46,8 +44,10 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authApi);
 app.use("/api/v1/users", userApi);
 
-app.listen(PORT || 3000, () => {
-  consola.success(`Server running on port ${PORT}`);
+console.log(process.env.PORT, "process.env.PORT || 3000");
+
+app.listen(process.env.PORT || 3000, () => {
+  consola.success(`Server running on port ${process.env.PORT}`);
 });
 
 // Handle unhandled promise rejections
